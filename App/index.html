@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TelusInternationals Registration Form</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <div >
+            <h1>Registration Form</h1>
+            <table class="table">
+                <form id="form">
+                    <tr>
+                        <td>
+                            <p>Full Name</p>
+                        </td>
+                        <td>
+                            <input type="text" id="fullname" placeholder="Enter Full Name">
+                            <span id="fullnameErrorMessage"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Email</p>
+                        </td>
+                        <td>
+                            <div>
+                                <input type="text" id="email" placeholder="Enter Email" >
+                                <span id="emailErrorMessage"></span>
+                            </div>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Flexible</p>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="flexible" aria-label="flexible">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Days For Availibility</p>
+                        </td>
+                        <td>
+                            <input type="number" id="availability" placeholder="Enter your availability">
+                            <span id="availDaysErrorMessage"></span>
+                        </td>
+                    </tr>
+                </form>
+            </table>
+            <button id="submit" onclick="validation()">Submit</button>
+        </div>
+        <script type="text/javascript">
+            function validation(){
+                var form = document.getElementById("form");
+                var email = document.getElementById("email").value;
+                var fullname = document.getElementById("fullname").value;
+                var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                var checkbox = document.getElementById("flexible");
+                var emailErrorMessageEle = document.getElementById("emailErrorMessage");
+                var fullnameErrorMessageEle = document.getElementById("fullnameErrorMessage");
+                var availDaysErrorMessageEle = document.getElementById("availDaysErrorMessage");
+                console.log(fullname.length)
+                if((!pattern.test(email))&&(email!="")){
+                    emailErrorMessageEle.innerText = "Invalid email address";
+                    emailErrorMessageEle.style.color = "#ff0000";
+                }
+
+                else{
+                    emailErrorMessageEle.innerText = "";
+                }
+
+                if((fullname.length)>100){
+                    fullnameErrorMessageEle.innerText = "Fullname is exceed 100 charcters";
+                    fullnameErrorMessageEle.style.color = "#ff0000";
+                }
+
+                else{
+                    fullnameErrorMessageEle.innerText = "";
+                }
+
+                if(fullname.trim()==""){
+                    fullnameErrorMessageEle.innerText = "Fullname is Mandatory";
+                    fullnameErrorMessageEle.style.color = "#ff0000";
+                }
+
+                if(!checkbox.checked){
+                    availDaysErrorMessageEle.innerText = "The Days for Availability not in a numeric format";
+                    availDaysErrorMessageEle.style.color = "#ff0000";
+                }
+
+                else{
+                    availDaysErrorMessageEle.innerText = "";
+                }
+            }
+        </script>
+    </body>
+
+</html>
